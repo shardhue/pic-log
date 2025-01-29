@@ -38,4 +38,12 @@ class UserController extends Controller
         auth()->logout();
         return redirect('/');
     }
+
+    public function ViewBlog() {
+        $posts = [];
+        if (auth()->check()) {
+            $posts = auth()->user()->UsersPosts()->latest()->get();
+        }
+        return view('my-blog', ['posts' => $posts]);
+    }
 }
