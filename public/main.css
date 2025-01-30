@@ -1,0 +1,45 @@
+button {
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    background-color: lightgrey;
+    transition: 0.1s all ease-in-out;
+}
+
+button:hover {
+    background-color: grey;
+}
+
+form {
+    margin:0px;
+    padding:0px;
+}
+
+form input, form textarea {
+    background-color: lightgray;
+    border-radius: 0.5rem;
+}
+
+form input {
+    height: 2rem;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form form button {
+    width: 60%;
+    margin: auto;
+}
+
+.header button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: white;
+}
+
+.header button:hover {
+    background-color: lightgray;
+}

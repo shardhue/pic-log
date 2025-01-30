@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function ShowCreatePost () {
+        if (auth()->check()) {
+            return view('create-post');
+        }
+        return redirect('/');
+    }
+
     public function CreatePost (Request $request) {
         $incomingFields = $request->validate([
             'title' => 'required',

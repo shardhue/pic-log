@@ -8,6 +8,20 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function ShowSignUp () {
+        if (auth()->check()) {
+            return redirect('/');
+        }
+        return view('sign-up');
+    }
+
+    public function ShowLogIn () {
+        if (auth()->check()) {
+            return redirect('/');
+        }
+        return view('log-in');
+    }
+
     public function Register (Request $request) {
         $incomingFields = $request->validate([
             'email' => ['required', 'email', Rule::unique('users', 'email')],
@@ -29,21 +43,14 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
+            return redirect('/');
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function LogOut () {
         auth()->logout();
         return redirect('/');
-    }
-
-    public function ViewBlog() {
-        $posts = [];
-        if (auth()->check()) {
-            $posts = auth()->user()->UsersPosts()->latest()->get();
-        }
-        return view('my-blog', ['posts' => $posts]);
     }
 }
